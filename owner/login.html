@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up with Phone Number</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f8fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .signup-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .logo p {
+            color: #7f8c8d;
+            margin-top: 8px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .country-code {
+            background-color: #f1f5f9;
+            padding: 14px 15px;
+            border: 1px solid #e1e8ed;
+            border-right: none;
+            border-radius: 8px 0 0 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #e1e8ed;
+            border-radius: 0 8px 8px 0;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .otp-input {
+            border-radius: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .timer {
+            margin-top: 15px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .resend-otp {
+            margin-top: 15px;
+            color: #3498db;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .resend-otp:hover {
+            color: #2980b9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e1e8ed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #7f8c8d;
+            margin: 0 10px;
+        }
+
+        .step.active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .step-line {
+            width: 40px;
+            height: 2px;
+            background-color: #e1e8ed;
+            margin-top: 14px;
+        }
+
+        .step-line.active {
+            background-color: #3498db;
+        }
+
+        .success-message {
+            color: #27ae60;
+            font-weight: 500;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(39, 174, 96, 0.1);
+            border-radius: 8px;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="signup-card">
+            <div class="logo">
+                <h1>Create Account</h1>
+                <p>Sign up with your phone number</p>
+            </div>
+
+            <div class="step-indicator">
+                <div class="step active">1</div>
+                <div class="step-line"></div>
+                <div class="step">2</div>
+            </div>
+
+            <!-- Step 1: Phone Number Input -->
+            <div id="step1">
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <div class="input-group">
+                        <div class="country-code">+191</div>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" maxlength="10">
+                    </div>
+                    <div id="phone-error" class="error-message"></div>
+                </div>
+                <button id="send-otp-btn" class="btn">Send OTP</button>
+            </div>
+
+            <!-- Step 2: OTP Verification -->
+            <div id="step2" class="hidden">
+                <div class="form-group">
+                    <label for="otp">Enter OTP</label>
+                    <input type="text" id="otp" class="otp-input" placeholder="Enter 6-digit OTP" maxlength="6">
+                    <div id="otp-error" class="error-message"></div>
+                </div>
+                <div class="timer" id="timer">Resend OTP in 1:00</div>
+                <div class="resend-otp hidden" id="resend-otp">Resend OTP</div>
+                <button id="verify-otp-btn" class="btn">Verify OTP</button>
+            </div>
+
+            <!-- Success Message -->
+            <div id="success-message" class="hidden success-message">
+                Account created successfully!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const phoneInput = document.getElementById('phone');
+        const otpInput = document.getElementById('otp');
+        const sendOtpBtn = document.getElementById('send-otp-btn');
+        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+        const timerElement = document.getElementById('timer');
+        const resendOtpBtn = document.getElementById('resend-otp');
+        const phoneError = document.getElementById('phone-error');
+        const otpError = document.getElementById('otp-error');
+        const successMessage = document.getElementById('success-message');
+        const steps = document.querySelectorAll('.step');
+        const stepLines = document.querySelectorAll('.step-line');
+
+        // Variables
+        let countdown;
+        let timeLeft = 60; // 60 seconds for OTP expiration
+
+        // Event Listeners
+        sendOtpBtn.addEventListener('click', sendOtp);
+        verifyOtpBtn.addEventListener('click', verifyOtp);
+        resendOtpBtn.addEventListener('click', resendOtp);
+        
+        // Phone number validation (only numbers)
+        phoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // OTP validation (only numbers)
+        otpInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Functions
+        function sendOtp() {
+            const phoneNumber = phoneInput.value.trim();
+            
+            // Validate phone number
+            if (!phoneNumber) {
+                phoneError.textContent = 'Please enter your phone number';
+                return;
+            }
+            
+            if (phoneNumber.length !== 10) {
+                phoneError.textContent = 'Please enter a valid 10-digit phone number';
+                return;
+            }
+            
+            // Clear any previous error
+            phoneError.textContent = '';
+            
+            // In a real application, you would send the phone number to your backend
+            // which would then send an OTP to the user's phone
+            console.log(`Sending OTP to +1${phoneNumber}`);
+            
+            // Simulate API call delay
+            sendOtpBtn.disabled = true;
+            sendOtpBtn.textContent = 'Sending...';
+            
+            setTimeout(() => {
+                // Show step 2
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+                
+                // Update step indicator
+                steps[1].classList.add('active');
+                stepLines[0].classList.add('active');
+                
+                // Start countdown timer
+                startTimer();
+                
+                // Reset button
+                sendOtpBtn.disabled = false;
+                sendOtpBtn.textContent = 'Send OTP';
+            }, 1500);
+        }
+
+        function verifyOtp() {
+            const otp = otpInput.value.trim();
+            
+            // Validate OTP
+            if (!otp) {
+                otpError.textContent = 'Please enter the OTP';
+                return;
+            }
+            
+            if (otp.length !== 6) {
+                otpError.textContent = 'OTP must be 6 digits';
+                return;
+            }
+            
+            // Clear any previous error
+            otpError.textContent = '';
+            
+            // In a real application, you would verify the OTP with your backend
+            console.log(`Verifying OTP: ${otp}`);
+            
+            // Simulate API call delay
+            verifyOtpBtn.disabled = true;
+            verifyOtpBtn.textContent = 'Verifying...';
+            
+            setTimeout(() => {
+                // For demo purposes, we'll assume OTP is correct
+                // In a real app, you would check the response from your backend
+                
+                // Show success message
+                step2.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    window.location.href = "/owner/owner.html"
+                }, 4000)
+                
+                // Update step indicator
+                steps[1].classList.add('active');
+                stepLines[0].classList.add('active');
+                
+                // Reset button
+                verifyOtpBtn.disabled = false;
+                verifyOtpBtn.textContent = 'Verify OTP';
+                
+                // In a real app, you would redirect to the dashboard or next step
+                console.log('OTP verified successfully!');
+            }, 1500);
+        }
+
+        function resendOtp() {
+            // Reset timer
+            clearInterval(countdown);
+            timeLeft = 60;
+            updateTimerDisplay();
+            
+            // Hide resend button and show timer
+            resendOtpBtn.classList.add('hidden');
+            timerElement.classList.remove('hidden');
+            
+            // Start countdown again
+            startTimer();
+            
+            // In a real application, you would resend the OTP
+            console.log('Resending OTP...');
+        }
+
+        function startTimer() {
+            clearInterval(countdown);
+            timeLeft = 60;
+            updateTimerDisplay();
+            
+            countdown = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerElement.classList.add('hidden');
+                    resendOtpBtn.classList.remove('hidden');
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Resend OTP in ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+    </script>
+</body>
+</html>

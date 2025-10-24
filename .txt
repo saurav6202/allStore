@@ -1,0 +1,29 @@
+backend/
+├── config/
+│   └── database.js              # MongoDB connection configuration
+├── controllers/                 # Business logic for each route
+│   ├── authController.js        # Authentication logic
+│   ├── storeController.js       # Store management logic
+│   └── productController.js     # Product management logic
+├── middleware/                  # Custom middleware functions
+│   ├── auth.js                 # JWT authentication middleware
+│   └── validation.js           # Input validation middleware
+├── models/                     # MongoDB schema definitions
+│   ├── User.js                 # User model
+│   ├── Store.js                # Store model
+│   └── Product.js              # Product model
+├── routes/                     # API route definitions
+│   ├── auth.js                 # Authentication routes
+│   ├── stores.js               # Store management routes
+│   └── products.js             # Product management routes
+├── uploads/                    # File uploads directory
+│   ├── store-logos/            # Store logo images
+│   ├── store-banners/          # Store banner images
+│   └── product-images/         # Product images
+├── utils/                      # Utility functions
+│   ├── fileUpload.js           # File upload handling
+│   └── helpers.js              # Helper functions
+├── .env                        # Environment variables
+├── .gitignore                  # Git ignore file
+├── package.json               # Backend dependencies
+└── server.js                  # Main server file
