@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alls Store - Nearby Stores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../assets/logo.png" alt="">
+                    <span>Alls Store</span>
+                </div>
+                <nav>
+                    <!-- <h1 class="page-title">Nearby Stores</h1> -->
+                    <div class="search-container">
+                        <input type="text" class="search-bar" placeholder="Search for stores..." id="searchInput">
+                    </div>
+                </nav>
+                <div class="location-btn">
+                    <i class="fa-solid fa-location-dot"></i>Bihar
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="stores-grid" id="storesGrid">
+                <!-- Store cards dynamically generated -->
+            </div>
+
+            <!-- Products Section -->
+            <h2 style="margin-top:40px; color:var(--primary);">Products</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Product cards dynamically generated -->
+            </div>
+
+            <div class="no-results" id="noResults">
+                <p>No stores found matching your search.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal for Products -->
+    <div class="modal" id="productsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalStoreName">Store Products</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="products-list" id="productsList">
+                    <!-- Products will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="brand-name">Alls Store</div>
+                <div class="copyright">&copy; 2023 Alls Store. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+    <script src="./customer.js"></script>
+</body>
+
+</html>

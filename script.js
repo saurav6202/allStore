@@ -28,12 +28,27 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="popup-overlay" id="popupOverlay">
             <div class="popup">
                 <h2>Welcome to Alls Store</h2>
-                <a href="owner/login.html" class="popup-btn shop-owner">Shop Owner</a>
-                <a href="customer/index.html" class="popup-btn customer">Customer</a>
+               <a href="#" id="shopOwnerBtn" class="popup-btn shop-owner">Shop Owner</a>
+<a href="#" id="customerBtn" class="popup-btn customer">Customer</a>
+
             </div>
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', popupHTML);
+// Function to handle dynamic redirects that work on both localhost and GitHub Pages
+function redirectTo(subPath) {
+  const basePath = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '');
+  window.location.href = `${basePath}/${subPath}`;
+}
+
+// Add event listeners for both buttons
+document.getElementById("shopOwnerBtn").addEventListener("click", () => {
+  redirectTo("owner/owner.html");
+});
+
+document.getElementById("customerBtn").addEventListener("click", () => {
+  redirectTo("customer/index.html");
+});
 
     const popupOverlay = document.getElementById('popupOverlay');
     popupOverlay.classList.add('active');
