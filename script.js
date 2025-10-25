@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="popup-overlay" id="popupOverlay">
             <div class="popup">
                 <h2>Welcome to Alls Store</h2>
-                <a href="/owner/login.html" class="popup-btn shop-owner">Shop Owner</a>
-                <a href="/customer/index.html" class="popup-btn customer">Customer</a>
+                <a href="owner/login.html" class="popup-btn shop-owner">Shop Owner</a>
+                <a href="customer/index.html" class="popup-btn customer">Customer</a>
             </div>
         </div>
     `;
