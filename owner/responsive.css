@@ -1,0 +1,44 @@
+@media (max-width: 500px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .bottomBar {
+        display: flex;
+    }
+
+    #manage-products {
+        height: 100vh;
+    }
+
+    .products-grid {
+        margin-top: 5rem;
+    }
+
+    .main-content {
+        padding: 0.5rem
+    }
+    .card-value{
+        font-size: 1.4rem;
+    }
+
+    .section-title {
+        margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
+        font-size: 1.6rem;
+    }
+    #store-form .btn{
+        padding: 10px 25px;
+    }
+    #my-store .card{
+        padding: 0.8rem;
+    }
+}

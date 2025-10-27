@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" href="/assets/icon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/responsive.css">
+    <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="productCard.css">
 </head>
 
@@ -199,11 +201,9 @@
 
                     <div style="display: flex; gap: 15px; margin-top: 25px;">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Save Store Details
-                        </button>
+                            <i class="fas fa-save"></i> Save</button>
                         <button type="button" class="btn btn-outline" id="preview-store">
-                            <i class="fas fa-eye"></i> Preview Store
-                        </button>
+                            <i class="fas fa-eye"></i> Preview</button>
                     </div>
                 </form>
             </div>
@@ -315,23 +315,46 @@
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
-    <!-- <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo" style="width: auto;">
-                <span>Alls Store</span>
-            </div>
-            <div class="footer-links">
-                <a href="#" class="footer-link">Terms of Service</a>
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Help Center</a>
-            </div>
-            <div class="footer-copyright">
-                © 2025 Alls Store. All rights reserved.
-            </div>
-        </div>
-    </footer> -->
+    <aside class="bottomBar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link active" data-section="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link" data-section="my-store">
+                    <i class="fas fa-store"></i>
+                    <span class="sidebar-text">My Store</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link" data-section="add-product">
+                    <i class="fas fa-plus-circle"></i>
+                    <span class="sidebar-text">Add Product</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link" data-section="manage-products">
+                    <i class="fas fa-boxes"></i>
+                    <span class="sidebar-text">Manage Products</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link" data-section="analytics">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="sidebar-text">Analytics</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span class="sidebar-text">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
 
     <!-- Preview Store Modal -->
     <div class="modal" id="preview-modal">

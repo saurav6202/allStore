@@ -1,0 +1,80 @@
+/* Responsive */
+@media (max-width: 800px) {
+    .header-content {
+        /* flex-direction: column; */
+        /* gap: 15px; */
+    }
+
+    nav {
+        display: none;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+
+    .screen-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .popup h2 {
+        margin-bottom: 0.8rem;
+    }
+    header .container{
+        padding: 0.3rem;
+    }
+    header .container .header-content{
+        padding: 0.4rem;
+    }
+    header .logo{
+        gap: 0;
+    }
+    header .logo span{
+        font-weight: 600;
+    }
+    header .auth-buttons {
+        gap: 0.5rem;
+    }
+    header .auth-buttons button{
+        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+    }
+}
+@media (max-width: 400px) {
+    .container{
+        padding: 0 0.5rem;
+    }
+    header .logo span{
+        display: none;
+    }
+    .hero{
+        padding-top: 4rem;
+    }
+    .hero h1{
+        font-size: 2rem;
+    }
+    .hero p{
+        font-size: 1rem;
+    }
+    .heor .hero-buttons{
+        display: flex;
+        flex-direction: row;
+    }
+    .screen-actions{
+        display: none;
+    }
+    .screen-preview{
+        padding: 0.7rem;
+    }
+}
