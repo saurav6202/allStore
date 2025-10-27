@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alls Store - Product Cards Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #38c300;
+            --primary-light: #e6f7e0;
+            --dark: #000000;
+            --light: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray: #888888;
+            --gray-dark: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .logo i {
+            font-size: 2.8rem;
+        }
+
+        .subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin: 60px 0 30px;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Base Card Styles */
+        .product-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Card Type 1: Classic Modern */
+        .card-classic {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card-classic .product-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #f8fff6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-classic .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .card-classic .product-image i {
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.9;
+        }
+
+        .card-classic .product-info {
+            padding: 25px;
+        }
+
+        .card-classic .product-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .card-classic .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .card-classic .product-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .card-classic .product-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Card Type 2: Minimalist */
+        .card-minimalist {
+            border: none;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .card-minimalist .product-image {
+            width: 120px;
+            height: 120px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .card-minimalist .product-image i {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .card-minimalist .product-name {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .card-minimalist .product-price {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .card-minimalist .product-description {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* Card Type 3: Glassmorphism */
+        .card-glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-glass .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(56, 195, 0, 0.1) 0%, rgba(230, 247, 224, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-glass .product-image i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+
+        .card-glass .product-info {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .card-glass .product-category {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .card-glass .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-glass .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Card Type 4: Gradient Background */
+        .card-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, #2da800 100%);
+            color: white;
+        }
+
+        .card-gradient .product-image {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-gradient .product-image i {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-gradient .product-info {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-gradient .product-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-gradient .product-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .card-gradient .product-description {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* Card Type 5: Card with Badges */
+        .card-badges {
+            position: relative;
+        }
+
+        .card-badges .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .card-badges .product-badge.sale {
+            background: #ff4757;
+        }
+
+        .card-badges .product-badge.new {
+            background: #2f86eb;
+        }
+
+        .card-badges .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #f8fff6 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-badges .product-image i {
+            font-size: 3.5rem;
+            color: var(--primary);
+        }
+
+        .card-badges .product-info {
+            padding: 25px;
+        }
+
+        .card-badges .product-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-badges .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-badges .current-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .card-badges .original-price {
+            font-size: 1rem;
+            color: var(--gray);
+            text-decoration: line-through;
+        }
+
+        /* Card Type 6: Interactive Hover */
+        .card-interactive {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-interactive .product-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #e8f5e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .card-interactive:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .card-interactive .product-image i {
+            font-size: 4rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .card-interactive:hover .product-image i {
+            transform: scale(1.1);
+        }
+
+        .card-interactive .product-info {
+            padding: 25px;
+            position: relative;
+        }
+
+        .card-interactive .quick-actions {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .card-interactive:hover .quick-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-interactive .action-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card-interactive .action-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Card Type 7: Compact Grid */
+        .card-compact {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .card-compact .product-image {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-light);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .card-compact .product-image i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .card-compact .product-info {
+            flex: 1;
+        }
+
+        .card-compact .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-compact .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .card-compact .product-description {
+            color: var(--gray);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        /* Card Type 8: Featured Premium */
+        .card-featured {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, var(--primary), #2da800) border-box;
+        }
+
+        .card-featured .featured-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), #2da800);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .card-featured .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #f0f9ff 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-featured .product-image i {
+            font-size: 4rem;
+            color: var(--primary);
+        }
+
+        .card-featured .product-info {
+            padding: 30px 25px 25px;
+            text-align: center;
+        }
+
+        .card-featured .product-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-featured .product-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .card-featured .product-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .card-featured .product-features li {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .card-featured .product-features li i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2da800;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Dark Mode Support */
+        /* @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+                color: var(--light);
+            }
+
+            .product-card {
+                background: var(--gray-dark);
+                color: var(--light);
+            }
+
+            .card-classic .product-name,
+            .card-minimalist .product-name,
+            .card-badges .product-name,
+            .card-interactive .product-name,
+            .card-compact .product-name,
+            .card-featured .product-name {
+                color: var(--light);
+            }
+
+            .card-glass {
+                background: rgba(51, 51, 51, 0.25);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .card-glass .product-info {
+                background: rgba(51, 51, 51, 0.3);
+            }
+
+            .card-interactive .action-btn {
+                background: var(--gray-dark);
+                color: var(--primary);
+            }
+        } */
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Animation for demo */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .product-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .product-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .product-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .product-card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .product-card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+        .product-card:nth-child(7) {
+            animation-delay: 0.6s;
+        }
+
+        .product-card:nth-child(8) {
+            animation-delay: 0.7s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-store"></i>
+                <span>Alls Store</span>
+            </div>
+            <p class="subtitle">Beautiful, modern product cards designed for your e-commerce platform. Hover over cards
+                to see interactive effects.</p>
+        </div>
+
+        <h2 class="section-title">Classic Modern Cards</h2>
+        <div class="cards-grid">
+            <!-- Card Type 1: Classic Modern -->
+            <div class="product-card card-classic">
+                <div class="product-image">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Premium Laptop</h3>
+                    <div class="product-price">$1,299.99</div>
+                    <p class="product-description">High-performance laptop with latest processor and stunning display.
+                        Perfect for work and gaming.</p>
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-heart"></i> Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Type 2: Minimalist -->
+            <div class="product-card card-minimalist">
+                <div class="product-image">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <h3 class="product-name">Wireless Headphones</h3>
+                <div class="product-price">$199.99</div>
+                <p class="product-description">Noise-cancelling wireless headphones with premium sound quality and
+                    comfort.</p>
+                <button class="btn btn-primary btn-full">
+                    <i class="fas fa-bolt"></i> Quick Buy
+                </button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Special Effect Cards</h2>
+        <div class="cards-grid">
+            <!-- Card Type 3: Glassmorphism -->
+            <div class="product-card card-glass">
+                <div class="product-image">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">SMARTPHONE</span>
+                    <h3 class="product-name">Pro Max Phone</h3>
+                    <div class="product-price">$899.99</div>
+                    <p class="product-description">Flagship smartphone with advanced camera system and all-day battery
+                        life.</p>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-eye"></i> View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card Type 4: Gradient Background -->
+            <div class="product-card card-gradient">
+                <div class="product-image">
+                    <i class="fas fa-watch"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Smart Watch Pro</h3>
+                    <div class="product-price">$349.99</div>
+                    <p class="product-description">Track your fitness, receive notifications, and stay connected with
+                        this premium smartwatch.</p>
+                    <button class="btn btn-outline" style="border-color: white; color: white;">
+                        <i class="fas fa-shopping-bag"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Interactive Cards</h2>
+        <div class="cards-grid">
+            <!-- Card Type 5: Card with Badges -->
+            <div class="product-card card-badges">
+                <div class="product-badge sale">25% OFF</div>
+                <div class="product-badge new">NEW</div>
+                <div class="product-image">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">DSLR Camera</h3>
+                    <div class="product-price">
+                        <span class="current-price">$799.99</span>
+                        <span class="original-price">$999.99</span>
+                    </div>
+                    <p class="product-description">Professional DSLR camera with 4K video recording and interchangeable
+                        lenses.</p>
+                    <button class="btn btn-primary btn-full">
+                        <i class="fas fa-tag"></i> Get Deal
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card Type 6: Interactive Hover -->
+            <div class="product-card card-interactive">
+                <div class="product-image">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="product-info">
+                    <div class="quick-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <h3 class="product-name">Gaming Console</h3>
+                    <div class="product-price">$499.99</div>
+                    <p class="product-description">Next-gen gaming console with immersive graphics and lightning-fast
+                        loading.</p>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-play"></i> Explore
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Compact & Featured</h2>
+        <div class="cards-grid">
+            <!-- Card Type 7: Compact Grid -->
+            <div class="product-card card-compact">
+                <div class="product-image">
+                    <i class="fas fa-tablet-alt"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Tablet Mini</h3>
+                    <div class="product-price">$399.99</div>
+                    <p class="product-description">Compact tablet perfect for reading, browsing, and light productivity
+                        tasks.</p>
+                </div>
+            </div>
+
+            <!-- Card Type 8: Featured Premium -->
+            <div class="product-card card-featured">
+                <div class="featured-badge">PREMIUM</div>
+                <div class="product-image">
+                    <i class="fas fa-tv"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Smart TV 4K</h3>
+                    <div class="product-price">$1,199.99</div>
+                    <ul class="product-features">
+                        <li><i class="fas fa-check"></i> 55-inch 4K Display</li>
+                        <li><i class="fas fa-check"></i> Smart Assistant Built-in</li>
+                        <li><i class="fas fa-check"></i> Voice Control</li>
+                        <li><i class="fas fa-check"></i> 3-Year Warranty</li>
+                    </ul>
+                    <button class="btn btn-primary btn-full">
+                        <i class="fas fa-crown"></i> Buy Premium
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.btn-primary');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                    alert(`Added ${productName} to cart!`);
+                });
+            });
+
+            // Wishlist functionality
+            const wishlistButtons = document.querySelectorAll('.fa-heart');
+            wishlistButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    this.classList.toggle('fas');
+                    this.classList.toggle('far');
+                    const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                    if (this.classList.contains('fas')) {
+                        alert(`Added ${productName} to wishlist!`);
+                    }
+                });
+            });
+
+            // Quick view functionality
+            const quickViewButtons = document.querySelectorAll('.action-btn .fa-eye');
+            quickViewButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                    alert(`Quick view: ${productName}`);
+                });
+            });
+
+            // Share functionality
+            const shareButtons = document.querySelectorAll('.action-btn .fa-share');
+            shareButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                    alert(`Share ${productName} with friends!`);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

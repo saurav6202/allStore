@@ -9,815 +9,18 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        :root {
-            --primary: #38c300;
-            --primary-light: #e6f7e0;
-            --dark: #000000;
-            --light: #ffffff;
-            --gray-light: #f5f5f5;
-            --gray: #888888;
-            --gray-dark: #333333;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --radius: 12px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--gray-light);
-            color: var(--dark);
-            transition: var(--transition);
-        }
-
-        body.dark-mode {
-            background-color: #121212;
-            color: var(--light);
-        }
-
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Header Styles */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background-color: var(--light);
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .dark-mode .header {
-            background-color: var(--gray-dark);
-            color: var(--light);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .logo i {
-            font-size: 1.8rem;
-        }
-
-        .profile {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .profile-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .profile-dropdown {
-            position: absolute;
-            top: 50px;
-            right: 0;
-            background-color: var(--light);
-            box-shadow: var(--shadow);
-            border-radius: var(--radius);
-            width: 180px;
-            padding: 10px 0;
-            display: none;
-            z-index: 1001;
-        }
-
-        .dark-mode .profile-dropdown {
-            background-color: var(--gray-dark);
-        }
-
-        .profile-dropdown.active {
-            display: block;
-        }
-
-        .profile-dropdown a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: var(--dark);
-            transition: var(--transition);
-        }
-
-        .dark-mode .profile-dropdown a {
-            color: var(--light);
-        }
-
-        .profile-dropdown a:hover {
-            background-color: var(--gray-light);
-        }
-
-        .dark-mode .profile-dropdown a:hover {
-            background-color: #2a2a2a;
-        }
-
-        /* Sidebar Styles */
-        .sidebar {
-            width: 250px;
-            background-color: var(--light);
-            height: 100vh;
-            position: fixed;
-            top: 70px;
-            left: 0;
-            overflow-y: auto;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            z-index: 999;
-        }
-
-        .dark-mode .sidebar {
-            background-color: var(--gray-dark);
-        }
-
-        .sidebar.collapsed {
-            width: 70px;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 20px 0;
-        }
-
-        .sidebar-item {
-            margin-bottom: 5px;
-        }
-
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px 25px;
-            text-decoration: none;
-            color: var(--dark);
-            transition: var(--transition);
-            border-left: 4px solid transparent;
-        }
-
-        .dark-mode .sidebar-link {
-            color: var(--light);
-        }
-
-        .sidebar-link:hover,
-        .sidebar-link.active {
-            background-color: var(--primary-light);
-            color: var(--primary);
-            border-left-color: var(--primary);
-        }
-
-        .dark-mode .sidebar-link:hover,
-        .dark-mode .sidebar-link.active {
-            background-color: #1a3312;
-        }
-
-        .sidebar-link i {
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-        }
-
-        .sidebar.collapsed .sidebar-text {
-            display: none;
-        }
-
-        .toggle-sidebar {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .sidebar.collapsed .toggle-sidebar {
-            left: 15px;
-        }
-
-        /* Main Content Styles */
-        .main-content {
-            flex: 1;
-            margin-left: 250px;
-            margin-top: 70px;
-            padding: 30px;
-            transition: var(--transition);
-        }
-
-        .sidebar.collapsed+.main-content {
-            margin-left: 70px;
-        }
-
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            color: var(--dark);
-        }
-
-        .dark-mode .section-title {
-            color: var(--light);
-        }
-
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            background-color: var(--light);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 25px;
-            transition: var(--transition);
-        }
-
-        .dark-mode .card {
-            background-color: var(--gray-dark);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .card-value {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .dark-mode .card-value {
-            color: var(--light);
-        }
-
-        .card-title {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .dark-mode .form-label {
-            color: var(--light);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: var(--radius);
-            font-size: 1rem;
-            transition: var(--transition);
-            background-color: var(--light);
-            color: var(--dark);
-        }
-
-        .dark-mode .form-control {
-            background-color: #2a2a2a;
-            border-color: #444;
-            color: var(--light);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(56, 195, 0, 0.2);
-        }
-
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        /* Button Styles */
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #2da800;
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-light);
-        }
-
-        .dark-mode .btn-outline:hover {
-            background-color: #1a3312;
-        }
-
-        .btn-danger {
-            background-color: #ff4757;
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background-color: #ff3742;
-        }
-
-        .btn-sm {
-            padding: 8px 15px;
-            font-size: 0.9rem;
-        }
-
-        /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .product-card {
-            background-color: var(--light);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            transition: var(--transition);
-            animation: fadeIn 0.5s ease;
-        }
-
-        .dark-mode .product-card {
-            background-color: var(--gray-dark);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .product-image {
-            height: 200px;
-            width: 100%;
-            background-color: var(--gray-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray);
-            font-size: 3rem;
-        }
-
-        .dark-mode .product-image {
-            background-color: #2a2a2a;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-
-        .dark-mode .product-name {
-            color: var(--light);
-        }
-
-        .product-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .product-description {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        /* Chart Container */
-        .chart-container {
-            background-color: var(--light);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-
-        .dark-mode .chart-container {
-            background-color: var(--gray-dark);
-        }
-
-        .chart-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .dark-mode .chart-title {
-            color: var(--light);
-        }
-
-        /* Settings Toggle */
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .toggle-label {
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .dark-mode .toggle-label {
-            color: var(--light);
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: var(--transition);
-            border-radius: 34px;
-        }
-
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: var(--transition);
-            border-radius: 50%;
-        }
-
-        input:checked+.toggle-slider {
-            background-color: var(--primary);
-        }
-
-        input:checked+.toggle-slider:before {
-            transform: translateX(30px);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background-color: var(--light);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 30px;
-            position: relative;
-            animation: slideUp 0.3s ease;
-        }
-
-        .dark-mode .modal-content {
-            background-color: var(--gray-dark);
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .dark-mode .modal-title {
-            color: var(--light);
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray);
-        }
-
-        .close-modal:hover {
-            color: var(--dark);
-        }
-
-        .dark-mode .close-modal:hover {
-            color: var(--light);
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--primary);
-            color: white;
-            padding: 15px 25px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 3000;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .toast.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* Footer Styles */
-        .footer {
-            background-color: var(--light);
-            padding: 30px;
-            margin-top: 50px;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
-
-        .dark-mode .footer {
-            background-color: var(--gray-dark);
-            border-top-color: #444;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-link {
-            color: var(--gray);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-link:hover {
-            color: var(--primary);
-        }
-
-        .footer-copyright {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .sidebar {
-                width: 70px;
-            }
-
-            .main-content {
-                margin-left: 70px;
-            }
-
-            .sidebar .sidebar-text {
-                display: none;
-            }
-
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .header {
-                padding: 0 15px;
-            }
-
-            .main-content {
-                padding: 20px 15px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 20px;
-            }
-        }
-    </style>
+    <link rel="icon" href="/assets/icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="productCard.css">
 </head>
 
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="logo">
-            <i class="fas fa-store"></i>
+        <a class="logo" href="/">
+            <img src="../assets/logo.png" alt="">
             <span>Alls Store</span>
-        </div>
+        </a>
         <div class="profile" id="profile">
             <div class="profile-img">JS</div>
             <span>John Smith</span>
@@ -879,7 +82,6 @@
     <main class="main-content">
         <!-- Dashboard Section -->
         <section class="section active" id="dashboard">
-            <h2 class="section-title">Dashboard Overview</h2>
             <div class="cards-grid">
                 <div class="card">
                     <div class="card-icon">
@@ -910,13 +112,30 @@
                     <div class="card-title">Last Updated</div>
                 </div>
             </div>
-
-            <div class="card">
-                <h3 class="chart-title">Recent Activity</h3>
-                <p>Welcome to your Alls Store dashboard! Here you can manage your store details, add products, track
-                    analytics, and more.</p>
-                <p>Get started by updating your store information or adding your first product.</p>
+            <h2 class="section-title">Your Products</h2>
+            <div class="product-card-grid">
+                <div class="product-card card-classic">
+                    <div class="product-image">
+                        <img src="../assets/defaultProduct.jpg" alt="">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Premium Rice</h3>
+                        <div class="product-price">₹1,299.99</div>
+                        <p class="product-description">High-performance laptop with latest processor and stunning
+                            display.
+                            Perfect for work and gaming.</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-file-alt"></i> Full Details
+                            </button>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </section>
 
         <!-- My Store Section -->
@@ -966,14 +185,18 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Store Logo / Banner</label>
-                        <div
+                        <div id="upload-area"
                             style="border: 2px dashed #ddd; border-radius: var(--radius); padding: 30px; text-align: center; cursor: pointer;">
                             <i class="fas fa-cloud-upload-alt"
                                 style="font-size: 2rem; color: var(--gray); margin-bottom: 10px;"></i>
                             <p>Click to upload or drag and drop</p>
                             <p style="font-size: 0.8rem; color: var(--gray);">PNG, JPG, GIF up to 10MB</p>
+                            <input type="file" id="file-input" accept="image/*" hidden />
+                            <img id="preview-img"
+                                style="max-width: 100%; margin-top: 15px; display: none; border-radius: 8px;" />
                         </div>
                     </div>
+
                     <div style="display: flex; gap: 15px; margin-top: 25px;">
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save"></i> Save Store Details
@@ -1094,10 +317,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="footer-content">
-            <div class="footer-logo">
-                <i class="fas fa-store"></i>
+            <div class="footer-logo" style="width: auto;">
                 <span>Alls Store</span>
             </div>
             <div class="footer-links">
@@ -1109,7 +331,7 @@
                 © 2025 Alls Store. All rights reserved.
             </div>
         </div>
-    </footer>
+    </footer> -->
 
     <!-- Preview Store Modal -->
     <div class="modal" id="preview-modal">
@@ -1199,6 +421,53 @@
         <i class="fas fa-check-circle"></i>
         <span id="toast-message">Store updated successfully</span>
     </div>
+
+    <script>
+        const uploadArea = document.getElementById("upload-area");
+        const fileInput = document.getElementById("file-input");
+        const previewImg = document.getElementById("preview-img");
+
+        // Click to open file dialog
+        uploadArea.addEventListener("click", () => fileInput.click());
+
+        // File selected
+        fileInput.addEventListener("change", handleFile);
+
+        // Drag & drop functionality
+        uploadArea.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = "#2C74B3";
+        });
+
+        uploadArea.addEventListener("dragleave", () => {
+            uploadArea.style.borderColor = "#ddd";
+        });
+
+        uploadArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = "#ddd";
+            const file = e.dataTransfer.files[0];
+            if (file) previewFile(file);
+        });
+
+        function handleFile(e) {
+            const file = e.target.files[0];
+            if (file) previewFile(file);
+        }
+
+        function previewFile(file) {
+            if (!file.type.startsWith("image/")) return alert("Please select an image file!");
+            if (file.size > 10 * 1024 * 1024) return alert("File too large! Must be under 10MB.");
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImg.src = e.target.result;
+                previewImg.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+
+    </script>
 
     <script>
         // DOM Elements
