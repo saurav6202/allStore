@@ -244,37 +244,36 @@
             </div>
         </div>
     </div>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // ===== FIREBASE CONFIGURATION ===== //
-        const firebaseConfig = {
-            apiKey: "AIzaSyAeYlFf5Y81ohpG6z5c7FQORxL9xHeZbY4",
-            authDomain: "allsstore.firebaseapp.com",
-            projectId: "allsstore",
-            storageBucket: "allsstore.appspot.com",
-            messagingSenderId: "750726411325",
-            appId: "1:750726411325:web:8bf324a4180e2ed979e654",
-            measurementId: "G-LGJDJXNSP0"
-        };
+  const firebaseConfig = {
+    apiKey: "AIzaSyAeYlFf5Y81ohpG6z5c7FQORxL9xHeZbY4",
+    authDomain: "allsstore.firebaseapp.com",
+    projectId: "allsstore",
+    storageBucket: "allsstore.appspot.com",
+    messagingSenderId: "750726411325",
+    appId: "1:750726411325:web:8bf324a4180e2ed979e654",
+    measurementId: "G-LGJDJXNSP0"
+  };
 
-        // ===== INITIALIZE FIREBASE ===== //
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-        // Setup reCAPTCHA
-        window.onload = () => {
-            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                size: 'invisible',
-                callback: () => console.log("✅ reCAPTCHA verified"),
-            });
-        };
+  // ✅ Must be called after the page fully loads
+  window.onload = () => {
+    window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+      size: 'invisible',
+      callback: () => console.log("✅ reCAPTCHA verified")
+    });
+  };
 
-        // Expose Firebase globally (optional)
-        window.auth = auth;
-        window.signInWithPhoneNumber = signInWithPhoneNumber;
-    </script>
+  window.auth = auth;
+  window.signInWithPhoneNumber = signInWithPhoneNumber;
+</script>
+
+<div id="recaptcha-container"></div>
 
     <div id="recaptcha-container"></div>
 
