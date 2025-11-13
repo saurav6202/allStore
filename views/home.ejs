@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alls Store - Connect Local Shops & Customers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="icon" href="/assets/icon.jpg" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="./assets/logo.png" alt="">
+                    <span>Alls Store</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#screens">Screens</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline shopOwnerBtn">Shop Owner</button>
+                    <button class="btn btn-primary customerBtn">Customer</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Connect Local Shops & Customers Directly</h1>
+            <p>Alls Store bridges the gap between local shop owners and customers. Browse nearby stores, view products,
+                and place orders directly through WhatsApp.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary shopOwnerBtn">Add Your Store</button>
+                <button class="btn btn-outline customerBtn">Browse Stores</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Alls Store simplifies the process of connecting customers with local shops</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>For Shop Owners</h3>
+                    <p>Easily add your store, update details, and manage products. Reach more customers in your local
+                        area without complex setup.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Find Nearby Stores</h3>
+                    <p>Customers can browse local shops without creating an account. See store details, products, and
+                        place orders instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp Integration</h3>
+                    <p>Orders are sent directly to shop owners via WhatsApp with prefilled messages for quick
+                        processing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screens Section -->
+    <section class="screens" id="screens">
+        <div class="container">
+            <div class="section-title">
+                <h2>App Screens</h2>
+                <p>Explore the user-friendly interface designed for both customers and shop owners</p>
+            </div>
+
+            <div class="screens-tabs">
+                <button class="tab-btn active" data-tab="customer">Customer View</button>
+                <button class="tab-btn" data-tab="owner">Shop Owner View</button>
+            </div>
+
+            <!-- Customer View -->
+            <div class="screen-content active" id="customer-tab">
+                <div class="screen-preview">
+                    <div class="screen-header">
+                        <div class="screen-title">Customer View</div>
+                        <div class="screen-actions">
+                            <button class="btn btn-outline">Home Screen</button>
+                            <button class="btn btn-primary">Store Details</button>
+                        </div>
+                    </div>
+
+                    <div class="screen-body">
+                        <div class="store-list">
+                            <h3>Nearby Stores</h3>
+                            <div class="store-item">
+                                <div class="store-img">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div class="store-info">
+                                    <div class="store-name">Fresh Groceries</div>
+                                    <div class="store-location">0.5 miles away</div>
+                                </div>
+                            </div>
+                            <div class="store-item">
+                                <div class="store-img">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div class="store-info">
+                                    <div class="store-name">Quick Mart</div>
+                                    <div class="store-location">0.8 miles away</div>
+                                </div>
+                            </div>
+                            <div class="store-item">
+                                <div class="store-img">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div class="store-info">
+                                    <div class="store-name">Local Pharmacy</div>
+                                    <div class="store-location">1.2 miles away</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="store-detail">
+                            <div class="detail-header">
+                                <div class="detail-img">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div>
+                                    <div class="detail-title">Fresh Groceries</div>
+                                    <div class="detail-subtitle">0.5 miles away</div>
+                                </div>
+                            </div>
+
+                            <div class="detail-info">
+                                <div class="info-item">
+                                    <div class="info-label">Location:</div>
+                                    <div>123 Main Street</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Hours:</div>
+                                    <div>8:00 AM - 9:00 PM</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Description:</div>
+                                    <div>Your local fresh produce and grocery store</div>
+                                </div>
+                            </div>
+
+                            <h3>Products</h3>
+                            <div class="product-list">
+                                <div class="product-item">
+                                    <div class="product-img">
+                                        <i class="fas fa-apple-alt"></i>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-name">Fresh Apples</div>
+                                        <div class="product-price">2.99/kg</div>
+                                    </div>
+                                </div>
+                                <div class="product-item">
+                                    <div class="product-img">
+                                        <i class="fas fa-wine-bottle"></i>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-name">Olive Oil</div>
+                                        <div class="product-price">8.99</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary" style="margin-top: 20px; width: 100%;">
+                                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Owner View -->
+            <div class="screen-content" id="owner-tab">
+                <div class="screen-preview">
+                    <div class="screen-header">
+                        <div class="screen-title">Shop Owner View</div>
+                        <div class="screen-actions">
+                            <button class="btn btn-outline">Add Store</button>
+                            <button class="btn btn-primary">Add Product</button>
+                        </div>
+                    </div>
+
+                    <div class="screen-body">
+                        <div class="store-detail">
+                            <h3>Add Store</h3>
+                            <div class="form-group">
+                                <label class="form-label">Owner Name</label>
+                                <input type="text" class="form-control" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Owner Phone</label>
+                                <input type="text" class="form-control" placeholder="Enter your phone number">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Store Name</label>
+                                <input type="text" class="form-control" placeholder="Enter store name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" placeholder="Enter store location">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Open Hours</label>
+                                <input type="text" class="form-control" placeholder="e.g., 8:00 AM - 9:00 PM">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="3" placeholder="Describe your store"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Editable Key</label>
+                                <input type="text" class="form-control" placeholder="Create a secure key for updates">
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;">Submit Store</button>
+                        </div>
+
+                        <div class="store-detail">
+                            <h3>Add Product</h3>
+                            <div class="form-group">
+                                <label class="form-label">Product Name</label>
+                                <input type="text" class="form-control" placeholder="Enter product name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Price</label>
+                                <input type="text" class="form-control" placeholder="Enter product price">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Category</label>
+                                <select class="form-control">
+                                    <option>Select category</option>
+                                    <option>Groceries</option>
+                                    <option>Electronics</option>
+                                    <option>Clothing</option>
+                                    <option>Home & Garden</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="3" placeholder="Describe your product"></textarea>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%;">Add Product</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Alls Store</h3>
+                    <p>Connecting local shops and customers directly through a modern, user-friendly platform.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#screens">Screens</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@allsstore.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Alls Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
