@@ -1,411 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up with Phone Number</title>
-    <link rel="icon" href="/assets/icon.jpg" type="image/x-icon">
+    <link rel="icon" href="/assets/icon.jpg" type="image/x-icon" />
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
 
-        body {
-            background-color: #f5f8fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+      body {
+        background-color: #f5f8fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
 
-        .container {
-            width: 100%;
-            max-width: 450px;
-        }
+      .container {
+        width: 100%;
+        max-width: 450px;
+      }
 
-        .signup-card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 40px 30px;
-            text-align: center;
-        }
+      .signup-card {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        padding: 40px 30px;
+        text-align: center;
+      }
 
-        .logo {
-            margin-bottom: 30px;
-        }
+      .logo {
+        margin-bottom: 30px;
+      }
 
-        .logo h1 {
-            color: #2c3e50;
-            font-size: 28px;
-            font-weight: 600;
-        }
+      .logo h1 {
+        color: #2c3e50;
+        font-size: 28px;
+        font-weight: 600;
+      }
 
-        .logo p {
-            color: #7f8c8d;
-            margin-top: 8px;
-            font-size: 15px;
-        }
+      .logo p {
+        color: #7f8c8d;
+        margin-top: 8px;
+        font-size: 15px;
+      }
 
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
+      .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #2c3e50;
-            font-weight: 500;
-            font-size: 14px;
-        }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #2c3e50;
+        font-weight: 500;
+        font-size: 14px;
+      }
 
-        .input-group {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
+      .input-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
 
-        .country-code {
-            background-color: #f1f5f9;
-            padding: 14px 15px;
-            border: 1px solid #e1e8ed;
-            border-right: none;
-            border-radius: 8px 0 0 8px;
-            font-weight: 500;
-            color: #2c3e50;
-        }
+      .country-code {
+        background-color: #f1f5f9;
+        padding: 14px 15px;
+        border: 1px solid #e1e8ed;
+        border-right: none;
+        border-radius: 8px 0 0 8px;
+        font-weight: 500;
+        color: #2c3e50;
+      }
 
-        input {
-            width: 100%;
-            padding: 14px 15px;
-            border: 1px solid #e1e8ed;
-            border-radius: 0 8px 8px 0;
-            font-size: 15px;
-            transition: all 0.3s;
-        }
+      input {
+        width: 100%;
+        padding: 14px 15px;
+        border: 1px solid #e1e8ed;
+        border-radius: 0 8px 8px 0;
+        font-size: 15px;
+        transition: all 0.3s;
+      }
 
-        input:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
+      input:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+      }
 
-        .otp-input {
-            border-radius: 8px;
-        }
+      .otp-input {
+        border-radius: 8px;
+      }
 
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
+      .btn {
+        width: 100%;
+        padding: 14px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 10px;
+      }
 
-        .btn:hover {
-            background-color: #2980b9;
-        }
+      .btn:hover {
+        background-color: #2980b9;
+      }
 
-        .btn:disabled {
-            background-color: #bdc3c7;
-            cursor: not-allowed;
-        }
+      .btn:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+      }
 
-        .timer {
-            margin-top: 15px;
-            color: #7f8c8d;
-            font-size: 14px;
-        }
+      .timer {
+        margin-top: 15px;
+        color: #7f8c8d;
+        font-size: 14px;
+      }
 
-        .resend-otp {
-            margin-top: 15px;
-            color: #3498db;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: underline;
-        }
+      .resend-otp {
+        margin-top: 15px;
+        color: #3498db;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: underline;
+      }
 
-        .resend-otp:hover {
-            color: #2980b9;
-        }
+      .resend-otp:hover {
+        color: #2980b9;
+      }
 
-        .hidden {
-            display: none;
-        }
+      .hidden {
+        display: none;
+      }
 
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
+      .step-indicator {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
 
-        .step {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #e1e8ed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: #7f8c8d;
-            margin: 0 10px;
-        }
+      .step {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #e1e8ed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: #7f8c8d;
+        margin: 0 10px;
+      }
 
-        .step.active {
-            background-color: #3498db;
-            color: white;
-        }
+      .step.active {
+        background-color: #3498db;
+        color: white;
+      }
 
-        .step-line {
-            width: 40px;
-            height: 2px;
-            background-color: #e1e8ed;
-            margin-top: 14px;
-        }
+      .step-line {
+        width: 40px;
+        height: 2px;
+        background-color: #e1e8ed;
+        margin-top: 14px;
+      }
 
-        .step-line.active {
-            background-color: #3498db;
-        }
+      .step-line.active {
+        background-color: #3498db;
+      }
 
-        .success-message {
-            color: #27ae60;
-            font-weight: 500;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: rgba(39, 174, 96, 0.1);
-            border-radius: 8px;
-        }
+      .success-message {
+        color: #27ae60;
+        font-weight: 500;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: rgba(39, 174, 96, 0.1);
+        border-radius: 8px;
+      }
 
-        .error-message {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 10px;
-            text-align: left;
-        }
+      .error-message {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-top: 10px;
+        text-align: left;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="signup-card">
-            <div class="logo">
-                <h1>Create Account</h1>
-                <p>Sign up with your phone number</p>
-            </div>
-
-            <div class="step-indicator">
-                <div class="step active">1</div>
-                <div class="step-line"></div>
-                <div class="step">2</div>
-            </div>
-
-            <!-- Step 1: Phone Number Input -->
-            <div id="step1">
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <div class="input-group">
-                        <div class="country-code">+91</div>
-                        <input type="tel" id="phone" placeholder="Enter your phone number" maxlength="10">
-                    </div>
-                    <div id="phone-error" class="error-message"></div>
-                </div>
-                <button id="send-otp-btn" class="btn">Send OTP</button>
-            </div>
-
-            <!-- Step 2: OTP Verification -->
-            <div id="step2" class="hidden">
-                <div class="form-group">
-                    <label for="otp">Enter OTP</label>
-                    <input type="text" id="otp" class="otp-input" placeholder="Enter 6-digit OTP" maxlength="6">
-                    <div id="otp-error" class="error-message"></div>
-                </div>
-                <div class="timer" id="timer">Resend OTP in 1:00</div>
-                <div class="resend-otp hidden" id="resend-otp">Resend OTP</div>
-                <button id="verify-otp-btn" class="btn">Verify OTP</button>
-            </div>
-
-            <!-- Success Message -->
-            <div id="success-message" class="hidden success-message">
-                Account created successfully!
-            </div>
+      <div class="signup-card">
+        <div class="logo">
+          <h1>Create Account</h1>
+          <p>Sign up with your phone number</p>
         </div>
+
+        <div class="step-indicator">
+          <div class="step active">1</div>
+          <div class="step-line"></div>
+          <div class="step">2</div>
+        </div>
+
+        <!-- Step 1: Phone Number Input -->
+        <div id="step1">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <div class="input-group">
+              <div class="country-code">+91</div>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="Enter your phone number"
+                maxlength="10"
+              />
+            </div>
+            <div id="phone-error" class="error-message"></div>
+          </div>
+          <button id="send-otp-btn" class="btn">Send OTP</button>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div id="step2" class="hidden">
+          <div class="form-group">
+            <label for="otp">Enter OTP</label>
+            <input
+              type="text"
+              id="otp"
+              class="otp-input"
+              placeholder="Enter 6-digit OTP"
+              maxlength="6"
+            />
+            <div id="otp-error" class="error-message"></div>
+          </div>
+          <div class="timer" id="timer">Resend OTP in 1:00</div>
+          <div class="resend-otp hidden" id="resend-otp">Resend OTP</div>
+          <button id="verify-otp-btn" class="btn">Verify OTP</button>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message" class="hidden success-message">
+          Account created successfully!
+        </div>
+      </div>
     </div>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getAuth,
+        RecaptchaVerifier,
+        signInWithPhoneNumber,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAeYlFf5Y81ohpG6z5c7FQORxL9xHeZbY4",
-    authDomain: "allsstore.firebaseapp.com",
-    projectId: "allsstore",
-    storageBucket: "allsstore.appspot.com",
-    messagingSenderId: "750726411325",
-    appId: "1:750726411325:web:8bf324a4180e2ed979e654",
-    measurementId: "G-LGJDJXNSP0"
-  };
+      const firebaseConfig = {
+        apiKey: "AIzaSyAeYlFf5Y81ohpG6z5c7FQORxL9xHeZbY4",
+        authDomain: "allsstore.firebaseapp.com",
+        projectId: "allsstore",
+        storageBucket: "allsstore.appspot.com",
+        messagingSenderId: "750726411325",
+        appId: "1:750726411325:web:8bf324a4180e2ed979e654",
+        measurementId: "G-LGJDJXNSP0",
+      };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
 
-  // ✅ Must be called after the page fully loads
-  window.onload = () => {
-    window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-      size: 'invisible',
-      callback: () => console.log("✅ reCAPTCHA verified")
-    });
-  };
+      // ✅ Must be called after the page fully loads
+      window.onload = () => {
+        window.recaptchaVerifier = new RecaptchaVerifier(
+          auth,
+          "recaptcha-container",
+          {
+            size: "invisible",
+            callback: () => console.log("✅ reCAPTCHA verified"),
+          }
+        );
+      };
 
-  window.auth = auth;
-  window.signInWithPhoneNumber = signInWithPhoneNumber;
-</script>
+      window.auth = auth;
+      window.signInWithPhoneNumber = signInWithPhoneNumber;
+    </script>
 
-<div id="recaptcha-container"></div>
+    <div id="recaptcha-container"></div>
 
     <div id="recaptcha-container"></div>
 
     <script>
-        // ===================== ELEMENTS ===================== //
-        const el = (id) => document.getElementById(id);
+      // ===================== ELEMENTS ===================== //
+      const el = (id) => document.getElementById(id);
 
-        const step1 = el('step1');
-        const step2 = el('step2');
-        const phoneInput = el('phone');
-        const otpInput = el('otp');
-        const sendOtpBtn = el('send-otp-btn');
-        const verifyOtpBtn = el('verify-otp-btn');
-        const timer = el('timer');
-        const resendBtn = el('resend-otp');
-        const phoneError = el('phone-error');
-        const otpError = el('otp-error');
-        const successMsg = el('success-message');
-        const steps = document.querySelectorAll('.step');
-        const stepLines = document.querySelectorAll('.step-line');
+      const step1 = el("step1");
+      const step2 = el("step2");
+      const phoneInput = el("phone");
+      const otpInput = el("otp");
+      const sendOtpBtn = el("send-otp-btn");
+      const verifyOtpBtn = el("verify-otp-btn");
+      const timer = el("timer");
+      const resendBtn = el("resend-otp");
+      const phoneError = el("phone-error");
+      const otpError = el("otp-error");
+      const successMsg = el("success-message");
+      const steps = document.querySelectorAll(".step");
+      const stepLines = document.querySelectorAll(".step-line");
 
-        let countdownTimer = null;
-        let timeLeft = 60;
+      let countdownTimer = null;
+      let timeLeft = 60;
 
-        // ===================== HELPERS ===================== //
-        const showError = (el, msg) => el.textContent = msg || '';
-        const switchStep = (from, to, stepIndex) => {
-            from.classList.add('hidden');
-            to.classList.remove('hidden');
-            steps[stepIndex].classList.add('active');
-            if (stepLines[stepIndex - 1]) stepLines[stepIndex - 1].classList.add('active');
-        };
-        const formatTime = (s) => `${Math.floor(s / 60)}:${s % 60 < 10 ? '0' : ''}${s % 60}`;
-        const updateTimer = () => timer.textContent = `Resend OTP in ${formatTime(timeLeft)}`;
+      // ===================== HELPERS ===================== //
+      const showError = (el, msg) => (el.textContent = msg || "");
+      const switchStep = (from, to, stepIndex) => {
+        from.classList.add("hidden");
+        to.classList.remove("hidden");
+        steps[stepIndex].classList.add("active");
+        if (stepLines[stepIndex - 1])
+          stepLines[stepIndex - 1].classList.add("active");
+      };
+      const formatTime = (s) =>
+        `${Math.floor(s / 60)}:${s % 60 < 10 ? "0" : ""}${s % 60}`;
+      const updateTimer = () =>
+        (timer.textContent = `Resend OTP in ${formatTime(timeLeft)}`);
 
-        // ===================== VALIDATION ===================== //
-        const isValidPhone = (num) => /^[0-9]{10}$/.test(num);
-        const isValidOtp = (num) => /^[0-9]{6}$/.test(num);
+      // ===================== VALIDATION ===================== //
+      const isValidPhone = (num) => /^[0-9]{10}$/.test(num);
+      const isValidOtp = (num) => /^[0-9]{6}$/.test(num);
 
-        // Restrict input to numbers only
-        [phoneInput, otpInput].forEach(input => {
-            input.addEventListener('input', () => input.value = input.value.replace(/\D/g, ''));
-        });
+      // Restrict input to numbers only
+      [phoneInput, otpInput].forEach((input) => {
+        input.addEventListener(
+          "input",
+          () => (input.value = input.value.replace(/\D/g, ""))
+        );
+      });
 
-        // ===================== OTP FLOW ===================== //
-        sendOtpBtn.addEventListener('click', async () => {
-            const phone = phoneInput.value.trim();
+      // ===================== OTP FLOW ===================== //
+      sendOtpBtn.addEventListener("click", async () => {
+        const phone = phoneInput.value.trim();
 
-            if (!isValidPhone(phone)) return showError(phoneError, 'Please enter a valid 10-digit phone number');
+        if (!isValidPhone(phone))
+          return showError(
+            phoneError,
+            "Please enter a valid 10-digit phone number"
+          );
 
-            showError(phoneError);
-            sendOtpBtn.disabled = true;
-            sendOtpBtn.textContent = 'Sending...';
+        showError(phoneError);
+        sendOtpBtn.disabled = true;
+        sendOtpBtn.textContent = "Sending...";
 
-            try {
-                const fullPhone = '+91' + phone;
-                const appVerifier = window.recaptchaVerifier;
-                const confirmationResult = await window.signInWithPhoneNumber(window.auth, fullPhone, appVerifier);
+        try {
+          const fullPhone = "+91" + phone;
+          const appVerifier = window.recaptchaVerifier;
+          const confirmationResult = await window.signInWithPhoneNumber(
+            window.auth,
+            fullPhone,
+            appVerifier
+          );
 
-                window.confirmationResult = confirmationResult;
-                console.log('✅ OTP sent to', fullPhone);
+          window.confirmationResult = confirmationResult;
+          console.log("✅ OTP sent to", fullPhone);
 
-                switchStep(step1, step2, 1);
-                startCountdown();
-            } catch (err) {
-                console.error('❌ Error sending OTP:', err);
-                showError(phoneError, err.message);
-            } finally {
-                sendOtpBtn.disabled = false;
-                sendOtpBtn.textContent = 'Send OTP';
-            }
-        });
-
-        verifyOtpBtn.addEventListener('click', async () => {
-            const otp = otpInput.value.trim();
-
-            if (!isValidOtp(otp)) return showError(otpError, 'OTP must be 6 digits');
-
-            showError(otpError);
-            verifyOtpBtn.disabled = true;
-            verifyOtpBtn.textContent = 'Verifying...';
-
-            try {
-                const result = await window.confirmationResult.confirm(otp);
-                const user = result.user;
-                console.log('✅ Verified user:', user.phoneNumber);
-
-                step2.classList.add('hidden');
-                successMsg.classList.remove('hidden');
-
-                // Redirect after success
-                setTimeout(() => window.location.href = "/", 2500);
-            } catch (err) {
-                console.error('❌ Invalid OTP:', err);
-                showError(otpError, 'Invalid OTP. Try again.');
-            } finally {
-                verifyOtpBtn.disabled = false;
-                verifyOtpBtn.textContent = 'Verify OTP';
-            }
-        });
-
-        resendBtn.addEventListener('click', () => {
-            console.log('↻ Resending OTP...');
-            resetCountdown();
-        });
-
-        // ===================== TIMER HANDLING ===================== //
-        function startCountdown() {
-            clearInterval(countdownTimer);
-            timeLeft = 60;
-            resendBtn.classList.add('hidden');
-            timer.classList.remove('hidden');
-            updateTimer();
-
-            countdownTimer = setInterval(() => {
-                timeLeft--;
-                updateTimer();
-
-                if (timeLeft <= 0) {
-                    clearInterval(countdownTimer);
-                    timer.classList.add('hidden');
-                    resendBtn.classList.remove('hidden');
-                }
-            }, 1000);
+          switchStep(step1, step2, 1);
+          startCountdown();
+        } catch (err) {
+          console.error("❌ Error sending OTP:", err);
+          showError(phoneError, err.message);
+        } finally {
+          sendOtpBtn.disabled = false;
+          sendOtpBtn.textContent = "Send OTP";
         }
+      });
 
-        function resetCountdown() {
-            clearInterval(countdownTimer);
-            startCountdown();
+      verifyOtpBtn.addEventListener("click", async () => {
+        const otp = otpInput.value.trim();
+
+        if (!isValidOtp(otp))
+          return showError(otpError, "OTP must be 6 digits");
+
+        showError(otpError);
+        verifyOtpBtn.disabled = true;
+        verifyOtpBtn.textContent = "Verifying...";
+
+        try {
+          const result = await window.confirmationResult.confirm(otp);
+          const user = result.user;
+          console.log("✅ Verified user:", user.phoneNumber);
+
+          step2.classList.add("hidden");
+          successMsg.classList.remove("hidden");
+
+          // Redirect after success
+          setTimeout(() => (window.location.href = "/"), 2500);
+        } catch (err) {
+          console.error("❌ Invalid OTP:", err);
+          showError(otpError, "Invalid OTP. Try again.");
+        } finally {
+          verifyOtpBtn.disabled = false;
+          verifyOtpBtn.textContent = "Verify OTP";
         }
+      });
+
+      resendBtn.addEventListener("click", () => {
+        console.log("↻ Resending OTP...");
+        resetCountdown();
+      });
+
+      // ===================== TIMER HANDLING ===================== //
+      function startCountdown() {
+        clearInterval(countdownTimer);
+        timeLeft = 60;
+        resendBtn.classList.add("hidden");
+        timer.classList.remove("hidden");
+        updateTimer();
+
+        countdownTimer = setInterval(() => {
+          timeLeft--;
+          updateTimer();
+
+          if (timeLeft <= 0) {
+            clearInterval(countdownTimer);
+            timer.classList.add("hidden");
+            resendBtn.classList.remove("hidden");
+          }
+        }, 1000);
+      }
+
+      function resetCountdown() {
+        clearInterval(countdownTimer);
+        startCountdown();
+      }
     </script>
-
-</body>
-
+  </body>
 </html>
